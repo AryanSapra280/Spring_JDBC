@@ -12,7 +12,7 @@
 ">
     <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" name="ds">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql://localhost:3360/springjdbc"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/springjdbc"/>
         <property name="username" value="root"/>
         <property name="password" value="Admin@123"/>
     </bean>
@@ -22,5 +22,7 @@
 <!--            <ref bean="ds"/>-->
 <!--        </property>-->
     </bean>
-
+    <bean class="org.example.dao.StudentDaoImpl" name="studentDaoImpl">
+        <constructor-arg ref="jdbcTemplate"/>
+    </bean>
 </beans>
