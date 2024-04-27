@@ -6,5 +6,6 @@ public interface StudentDao {
     int insert(Student student);
     int update(Student student); // in this we need to update based on the id value. So, a record with this id must be
                                 // existing.
+    int delete(Student student);
 
 }

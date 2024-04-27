@@ -36,7 +36,9 @@ public class App
         */
         Student student1 = new Student(4,"Naman","Noida");
         int result2 = studentDao.update(student1);
-        System.out.println("Number of rows updated... " + result2);
+        System.out.println("Number of rows updated after update operation... " + result2);
 
+        int result3 = studentDao.delete(student1);
+        System.out.println("Number of rows updated after deletion operation... " + result3);
     }
 }
