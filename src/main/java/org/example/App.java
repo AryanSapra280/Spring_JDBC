@@ -27,9 +27,16 @@ public class App
         String insertQuery1 = "insert into Student values(?,?,?)";
         int result = jdbcTemplate.update(insertQuery1,2,"Kartik","Bangalore");
         */
+        /*
+            if you run this query again then you will get error because id with 4 already exists
         Student student = new Student(4,"raman","Noida");
         int result = studentDao.insert(student);
         System.out.println("Number of rows updated... " + result);
+
+        */
+        Student student1 = new Student(4,"Naman","Noida");
+        int result2 = studentDao.update(student1);
+        System.out.println("Number of rows updated... " + result2);
 
     }
 }
