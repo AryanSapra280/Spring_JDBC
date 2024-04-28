@@ -40,5 +40,8 @@ public class App
 
         int result3 = studentDao.delete(student1);
         System.out.println("Number of rows updated after deletion operation... " + result3);
+
+        Student studentResult1 = studentDao.getStudent(2);
+        System.out.println("Student found with id 2 = " + studentResult1);
     }
 }
