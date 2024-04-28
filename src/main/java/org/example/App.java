@@ -22,20 +22,20 @@ public class App
     {
         ApplicationContext context = new AnnotationConfigApplicationContext(JdbcConfig.class);
         JdbcTemplate jdbcTemplate = context.getBean("getJdbcTemplate",JdbcTemplate.class);
-        StudentDao studentDao = context.getBean("getStudentDao",StudentDaoImpl.class);
+        StudentDao studentDao = context.getBean("studentDao",StudentDaoImpl.class);
         System.out.println("application started");
 
 
         //writing insert query
         //One way to write query but this is not industry standard
-        String insertQuery1 = "insert into Student values(?,?,?)";
+        /*String insertQuery1 = "insert into Student values(?,?,?)";
         int result = jdbcTemplate.update(insertQuery1,21,"Kartik","Bangalore");
         System.out.println("Number of rows updated after insertion... " + result);
         //if you run this query again then you will get error because id with 4 already exists
         Student student = new Student(41,"raman","Noida");
         int result1 = studentDao.insert(student);
         System.out.println("Number of rows updated after insertion... " + result1);
-
+*/
 
         Student student1 = new Student(4,"Naman","Noida");
         int result2 = studentDao.update(student1);
