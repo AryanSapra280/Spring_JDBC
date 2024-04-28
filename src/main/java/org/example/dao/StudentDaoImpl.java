@@ -1,7 +1,11 @@
 package org.example.dao;
 
 import org.example.entity.Student;
+import org.example.rowMappers.StudentRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+
+import java.sql.ResultSet;
+import java.util.Optional;
 
 public class StudentDaoImpl implements StudentDao{
     private final JdbcTemplate jdbcTemplate;
@@ -29,5 +33,24 @@ public class StudentDaoImpl implements StudentDao{
         String deleteQuery = "delete from student where id = ?";
         int result = jdbcTemplate.update(deleteQuery,student.getId());
         return result;
+    }
+
+    @Override
+    public Student getStudent(Integer id) {
+        String selectQuery = "select * from student where id = ?";
+        Student student = new Student();
+        /*
+            Implementing rowMapper using new Class StudentRowMapper
+            Optional<Student> studentFound = Optional.ofNullable(Optional.ofNullable(jdbcTemplate.queryForObject(selectQuery,
+            new StudentRowMapper(), id)).orElse(null));
+        */
+        //Implementing rowMapper using lambda expression
+        Optional<Student> studentFound = Optional.ofNullable(Optional.ofNullable(jdbcTemplate.queryForObject(selectQuery, (ResultSet res, int rowNumbers)->{
+            student.setId(res.getInt("id"));
+            student.setName(res.getString("name"));
+            student.setCity(res.getString("city"));
+            return student;
+        }, id)).orElse(null));
+        return studentFound.get();
     }
 }
