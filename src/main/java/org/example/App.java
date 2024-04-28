@@ -7,6 +7,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -43,5 +45,10 @@ public class App
 
         Student studentResult1 = studentDao.getStudent(2);
         System.out.println("Student found with id 2 = " + studentResult1);
+
+        List<Student> students = studentDao.getAllStudent();
+        students.forEach((s)->{
+            System.out.println(s);
+        });
     }
 }
