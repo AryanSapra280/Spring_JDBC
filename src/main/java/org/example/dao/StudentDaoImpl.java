@@ -5,6 +5,7 @@ import org.example.rowMappers.StudentRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.sql.ResultSet;
+import java.util.List;
 import java.util.Optional;
 
 public class StudentDaoImpl implements StudentDao{
@@ -51,6 +52,15 @@ public class StudentDaoImpl implements StudentDao{
             student.setCity(res.getString("city"));
             return student;
         }, id)).orElse(null));
+        // it's better to use a separate class, because we have to implement everytime this code everywhere. With Earlier solution
+        // we can pass the object everywhere. Code duplicacy reduces
         return studentFound.get();
+    }
+
+    @Override
+    public List<Student> getAllStudent() {
+        String query = "select * from student";
+        List<Student> students = jdbcTemplate.query(query,new StudentRowMapper());
+        return students;
     }
 }
