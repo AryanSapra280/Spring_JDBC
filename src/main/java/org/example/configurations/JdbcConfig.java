@@ -27,9 +27,4 @@ public class JdbcConfig {
         JdbcTemplate jdbcTemplate = new JdbcTemplate(getDriverManagerDataSource());
         return jdbcTemplate;
     }
-    @Bean
-    public StudentDao getStudentDao() {
-        StudentDao studentDao = new StudentDaoImpl(getJdbcTemplate());
-        return studentDao;
-    }
 }

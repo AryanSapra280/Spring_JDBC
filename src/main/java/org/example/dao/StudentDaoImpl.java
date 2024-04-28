@@ -10,14 +10,10 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Component("studentDao")
 public class StudentDaoImpl implements StudentDao{
     @Autowired
-    private final JdbcTemplate jdbcTemplate;
-
-    public StudentDaoImpl(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    private JdbcTemplate jdbcTemplate;
 
     @Override
     public int insert(Student student) {
